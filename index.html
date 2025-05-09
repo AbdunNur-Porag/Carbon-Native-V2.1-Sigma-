@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="/css/beer.min.css">
+<script type="module" src="/css/beer.min.js"></script>
+<script src="/js/carbon.dom.js"></script>
+<script src="/js/widgets.js"></script>
+<div id="app">
+<div id="backUi_1"></div>
+<div id="backUi_2"></div>
+<div id="backUi_3"></div>
+</div>
+
+<script>
+ create("div")
+  .class(["card", "rounded", "shadow"])
+  .style({
+    backgroundColor: "#f0f0f0",
+    padding: "20px",
+    width: "300px",
+    border: "1px solid #ccc",
+    margin: "10px auto"
+  })
+  .text("Styled card block")
+  .add("#app");
+</script>

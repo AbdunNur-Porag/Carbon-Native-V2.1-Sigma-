@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live HTML Editor</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    #editor-container {
+      display: flex;
+      height: 100%;
+      flex-direction: row;
+      margin: 10px;
+    }
+    #html-editor {
+      width: 100%;
+      height: 100%;
+      padding: 15px;
+      border: 1px solid #ccc;
+      font-family: monospace;
+      font-size: 14px;
+      background-color: #f4f4f4;
+      color: #333;
+      outline: none;
+      resize: none;
+      overflow: auto;
+    }
+    #preview {
+      width: 100%;
+      height: 100%;
+      padding:0px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      box-sizing: border-box;
+      overflow: auto;
+      margin-left: 10px;
+    }
+    #editor-container > * {
+      flex-grow: 1;
+    }
+    /* Responsive layout */
+    @media (max-width: 768px) {
+      #editor-container {
+        flex-direction: column;
+      }
+      #preview {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="editor-container">
+    <iframe id="preview"></iframe>
+    <textarea id="html-editor" placeholder="Write your HTML code here..."></textarea>
+    
+  </div>
+
+  <script>
+    const htmlEditor = document.getElementById('html-editor');
+    const preview = document.getElementById('preview');
+
+    // Check if there's saved content in local storage
+    const savedContent = localStorage.getItem('htmlContent');
+    if (savedContent) {
+      htmlEditor.value = savedContent;
+      preview.srcdoc = savedContent; // Load saved content into preview
+    }
+
+    // Automatically save content to local storage on input
+    htmlEditor.addEventListener('input', updatePreviewAndSave);
+
+    function updatePreviewAndSave() {
+      const htmlContent = htmlEditor.value;
+      preview.srcdoc = htmlContent; // Update preview using srcdoc
+      localStorage.setItem('htmlContent', htmlContent); // Save content to local storage
+    }
+  </script>
+</body>
+</html>

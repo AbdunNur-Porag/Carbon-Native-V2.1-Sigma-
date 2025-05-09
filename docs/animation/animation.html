@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SPA Dynamic CSS + Animations</title>
+</head>
+<body>
+
+<div id="app">
+  <page id="homePage">
+    
+    <button onclick="navigateTo('main')">Go Main Page</button>
+    <button onclick="navigateTo('about')">Go About Page</button>
+    
+</page>
+</div>
+
+<!-- Hidden pages -->
+<page name="main"style="display:none">
+  <h1>Main Page</h1>
+  <button onclick="goBack()">Back</button>
+  
+  
+</page>
+
+<page name="about"style="display:none">
+  <h1>About Page</h1>
+  <button onclick="goBack()">Back</button>
+</page>
+
+<page name="settings"style="display:none">
+  <h1>Settings Page</h1>
+  <button onclick="goBack()">Back</button>
+</page>
+
+<page name="contact"style="display:none">
+  <h1>Contact Page</h1>
+  <button onclick="goBack()">Back</button>
+</page>
+
+<page name="profile"style="display:none">
+  <h1>Profile Page</h1>
+  <button onclick="goBack()">Back</button>
+</page>
+
+<script src="/docs/animation/pageAnimation.js"></script>
+</body>
+</html>
