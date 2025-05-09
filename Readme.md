@@ -176,6 +176,29 @@ create("div").child({
 
 ```javascript
 let bodyChild = element.EditChild("body");
+Example:
+const Card = () => create('div')
+  .class(['card'])
+  .child({
+    header: create('h3').text('Card Header'),
+    body: create('p').text('Card Body'),
+    footer: create('small').text('Card Footer')
+  });
+  registerComponent("Card", Card);
+
+const myCard=Card().add("#app")
+//now edit child of card
+myCard.EditChild("header").text("New Header")
+// for more nested  go this way header.obj name.obj name like js obj method
+  
+
+```
+#### `Instead of EditChild`
+```javascript
+to avoid EditChild you diractly access.
+
+const myCard=Card().add("#app")
+myCard.header.text("New Header")
 ```
 
 #### `.add("#id" or ".class")`
