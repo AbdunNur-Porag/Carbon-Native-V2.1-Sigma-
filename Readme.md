@@ -11,6 +11,7 @@ Here included some core and updated features.
 
 ```html
 <link rel="stylesheet" href="/css/beer.min.css">
+ <link rel="stylesheet" href="/js/activity.animation.css">
 <script type="module" src="/css/beer.min.js"></script>
 <script src="/js/carbon.dom.js"></script>
 <script src="/js/widgets.js"></script>
@@ -259,5 +260,62 @@ myCard.header.text("New Header").add("#app")
 
 
 ```
+### Page Activity
+For Making Page or Activity.
+```javascript
+//declear Activity Name at first
+// newActivity(Name)
+const MainActivity=newActivity("MainActivity")
 
+//for access use
+MainActivity.child({
+  // same way as  child
+})
+// you can use addObj
+MainActivity.addObj(objname,tagname).[blocks]
+
+
+```
+### Launch Activity
+```javascript
+// notice need initialLaunchActivity(activityName) this add in every code
+
+//launchActivity(name)
+this work with event.
+.event("click",()=>{
+launchActivity(name)  
+})
+for go back use
+activityBack()
+
+```
+### Activity Example 
+``` javascript
+MainActivity = newActivity("MainActivity").text("Main Activity");
+SecondActivity = newActivity("SecondActivity").text("Second Activity");
+
+MainActivity.addObj("btn", "button")
+  .text("Go to Second Activity")
+  .style({ marginTop: "10px", padding: "10px", display: "block" })
+  .onClick(() => launchActivity("SecondActivity","slide-left"));
+
+SecondActivity.addObj("btn", "button")
+  .text("Back to Main Activity")
+  .style({ marginTop: "10px", padding: "10px", display: "block" })
+  .onClick(() => launchActivity("MainActivity","slide-up"));
+
+MainActivity.addObj("backBtn", "button")
+  .text("Back")
+  .style({ marginTop: "10px", padding: "10px", display: "block" })
+  .onClick(() => activityBack());
+
+SecondActivity.addObj("backBtn", "button")
+  .text("Back")
+  .style({ marginTop: "10px", padding: "10px", display: "block" })
+  .onClick(() => activityBack());
+
+initialLaunchActivity("MainActivity")
+
+
+```
 # [Learn Basic 1](/docs/Example.V2.1.Md)

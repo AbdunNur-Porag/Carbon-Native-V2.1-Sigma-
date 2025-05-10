@@ -1,23 +1,42 @@
-<link rel="stylesheet" href="/css/beer.min.css">
-<script type="module" src="/css/beer.min.js"></script>
-<script src="/js/carbon.dom.js"></script>
-<script src="/js/widgets.js"></script>
-<div id="app">
-<div id="backUi_1"></div>
-<div id="backUi_2"></div>
-<div id="backUi_3"></div>
-</div>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title></title>
+        
+    </head>
+    <body>
 
-<script>
- create("div")
-  .class(["card", "rounded", "shadow"])
-  .style({
-    backgroundColor: "#f0f0f0",
-    padding: "20px",
-    width: "300px",
-    border: "1px solid #ccc",
-    margin: "10px auto"
-  })
-  .text("Styled card block")
-  .add("#app");
-</script>
+<script  type="module"src="/css/beer.min.js"></script>
+<link rel="stylesheet" href="/css/beer.min.css">
+       <script src="/js/carbon.dom.js"></script>
+       <link rel="stylesheet" href="/js/activity.animation.css">
+       
+       <script>
+MainActivity = newActivity("MainActivity").text("Main Activity");
+SecondActivity = newActivity("SecondActivity").text("Second Activity");
+
+MainActivity.addObj("btn", "button")
+  .text("Go to Second Activity")
+  .style({ marginTop: "10px", padding: "10px", display: "block" })
+  .onClick(() => launchActivity("SecondActivity","slide-left"));
+
+SecondActivity.addObj("btn", "button")
+  .text("Back to Main Activity")
+  .style({ marginTop: "10px", padding: "10px", display: "block" })
+  .onClick(() => launchActivity("MainActivity","slide-up"));
+
+MainActivity.addObj("backBtn", "button")
+  .text("Back")
+  .style({ marginTop: "10px", padding: "10px", display: "block" })
+  .onClick(() => activityBack());
+
+SecondActivity.addObj("backBtn", "button")
+  .text("Back")
+  .style({ marginTop: "10px", padding: "10px", display: "block" })
+  .onClick(() => activityBack());
+
+initialLaunchActivity("MainActivity")
+       </script>
+    </body>
+</html>
