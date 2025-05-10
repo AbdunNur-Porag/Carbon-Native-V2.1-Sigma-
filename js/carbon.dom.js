@@ -194,64 +194,37 @@ if (typeof window.__activitySystemInitialized === 'undefined') {
     return activity;
   };
 
-  function applyAnimation(el, type, reverse = false) {
-    const anim = {
-      "slide-left": reverse ? "slideInLeft" : "slideInRight",
-      "slide-right": reverse ? "slideInRight" : "slideInLeft",
-      "slide-up": reverse ? "slideInDown" : "slideInUp",
-      "slide-down": reverse ? "slideInUp" : "slideInDown",
-      "fade": "fadeIn"
-    }[type] || "";
-
-    el.style.animation = `${anim} 0.4s ease both`;
-    el.style.boxShadow = "0 0 30px rgba(0,0,0,0.2)";
-  }
-
-  // Add CSS animations
-  const style = document.createElement("style");
-  style.innerHTML = `
-    @keyframes slideInLeft { from {transform: translateX(-100%);} to {transform: translateX(0);} }
-    @keyframes slideInRight { from {transform: translateX(100%);} to {transform: translateX(0);} }
-    @keyframes slideInUp { from {transform: translateY(100%);} to {transform: translateY(0);} }
-    @keyframes slideInDown { from {transform: translateY(-100%);} to {transform: translateY(0);} }
-    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-  `;
-  document.head.appendChild(style);
-
+  // Remove animations
   window.initialLaunchActivity = function (activityName) {
     if (!AppBody[activityName]) return console.error(`Activity "${activityName}" not found`);
     Object.keys(AppBody._children).forEach((key) => {
-      AppBody._children[key][0].style({ display: "none", animation: "" });
+      AppBody._children[key][0].style({ display: "none" });
     });
     AppBody[activityName].style({
       display: "block",
-      animation: "",
-      boxShadow: "none"
     });
     activityHistory = [activityName];
   };
 
-  window.launchActivity = function (activityName, animationType = "slide-left") {
+  window.launchActivity = function (activityName) {
     if (!AppBody[activityName]) return console.error(`Activity "${activityName}" not found`);
 
     const current = activityHistory[activityHistory.length - 1];
     if (current && AppBody[current]) {
-      AppBody[current].style({ display: "none", animation: "" });
+      AppBody[current].style({ display: "none" });
     }
 
     AppBody[activityName].style({ display: "block" });
-    applyAnimation(AppBody[activityName]._el, animationType, false);
     activityHistory.push(activityName);
   };
 
-  window.activityBack = function (animationType = "slide-left") {
+  window.activityBack = function () {
     if (activityHistory.length < 2) return;
     const current = activityHistory.pop();
     const previous = activityHistory[activityHistory.length - 1];
 
-    if (AppBody[current]) AppBody[current].style({ display: "none", animation: "" });
+    if (AppBody[current]) AppBody[current].style({ display: "none" });
     AppBody[previous].style({ display: "block" });
-    applyAnimation(AppBody[previous]._el, animationType, true);
   };
 
   window.__activitySystemInitialized = true;
