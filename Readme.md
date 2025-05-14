@@ -145,6 +145,16 @@ element.text("Welcome");
 ```javascript
 element.html("<span>Inner HTML</span>");
 ```
+#### `.appendHtml("<b>Bold</b>")`
+
+```javascript
+element.appendHtml("<span>Inner HTML</span>");
+```
+#### `.appendText("<b>Bold</b>")`
+
+```javascript
+element.appendText("<span>Inner HTML</span>");
+```
 
 #### `.innerValue()`
 
@@ -239,7 +249,15 @@ registerComponent("Card", Card);
 
 
 ````
+##### Declear Component Another way
+```javascript
+function Card(){
+return create("div").class([" mycard"])
+}
+//useing this same way like others Card()
+//this way help to Avoid registers componet
 
+```
 ##### USE COMPONET
 ```javascript
 
