@@ -129,6 +129,15 @@ if (typeof window.__activitySystemInitialized === 'undefined') {
         if (parent) parent.appendChild(el);
         return api;
       },
+      // Add inside buildAPI(el)
+appendText(txt) {
+  el.textContent += txt;
+  return api;
+},
+appendHtml(htmlCode) {
+  el.innerHTML += htmlCode;
+  return api;
+},
       clone() {
         const clonedEl = el.cloneNode(true);
         return buildAPI(clonedEl);
